@@ -1,0 +1,147 @@
+/* src/components/Skills.css */
+.skills-section {
+  /* Global section padding is applied */
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem; /* Slightly reduced gap */
+  margin-bottom: 3.5rem; /* More space before certifications */
+}
+
+.skill-card {
+  background-color: var(--secondary-bg-color);
+  padding: 1.8rem; /* Slightly adjusted padding */
+  border-radius: 10px; /* More rounded corners */
+  box-shadow: 0 5px 18px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  border-top: 4px solid var(--accent-color-purple); /* Top accent border */
+}
+
+.skill-card:hover {
+  transform: translateY(-6px); /* Slightly more lift */
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+
+.skill-card-title {
+  font-size: 1.3rem;
+  color: var(--text-color); /* Main text color */
+  margin-bottom: 1.3rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--accent-color-blue);
+  display: block; /* Make it block to take full width for border */
+  text-align: left; /* Align title to left */
+}
+
+.skill-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.skill-item {
+  background-color: var(--primary-bg-color);
+  color: #ccc; /* Lighter text for skill items */
+  padding: 0.55rem 1rem; /* Adjusted padding */
+  border-radius: 20px; /* Pill shape */
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease-out, border-color 0.25s ease;
+}
+.skill-item:hover {
+  background-color: var(--accent-color-blue);
+  color: var(--secondary-bg-color); /* Dark text on hover */
+  border-color: var(--accent-color-blue);
+  transform: scale(1.03); /* Slightly enlarge on hover */
+}
+
+/* Certifications Section */
+.certifications-heading-container {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.certifications-heading {
+  font-size: clamp(1.6rem, 3.5vw, 2.1rem); /* Consistent with Education heading */
+  color: var(--text-color);
+  display: inline-block;
+  padding-bottom: 0.6rem;
+  position: relative;
+}
+.certifications-heading::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 3px;
+  background-image: linear-gradient(to right, var(--accent-color-blue), var(--accent-color-purple));
+  border-radius: 2px;
+}
+
+.certifications-list-container {
+  background-color: var(--secondary-bg-color);
+  padding: 1.8rem 2.2rem; /* Adjusted padding */
+  border-radius: 10px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.2);
+  max-width: 900px;
+  margin: 0 auto;
+  border-top: 4px solid var(--accent-color-blue); /* Different accent for certs */
+}
+
+.certifications-list {
+  list-style: none;
+  padding: 0;
+  color: #d5d5d5; /* Lighter text for certifications */
+}
+
+.certification-item {
+  font-size: 1rem; /* Slightly smaller cert text */
+  padding-left: 2rem;
+  position: relative;
+  margin-bottom: 0.7rem;
+  line-height: 1.65;
+}
+
+.certification-item::before {
+  content: '🎓'; /* Graduation cap emoji or other icon */
+  /* content: '📜'; */ /* Scroll emoji */
+  position: absolute;
+  left: 0;
+  top: 1px; /* Fine-tune vertical alignment */
+  color: var(--accent-color-blue);
+  font-size: 1.1rem;
+}
+.certification-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Animations */
+.skill-card,
+.certifications-heading-container,
+.certifications-list-container {
+  opacity: 0;
+  transform: translateY(25px); /* Slightly more initial offset */
+  animation: skillsSectionFadeIn 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.skill-card:nth-of-type(1) { animation-delay: 0.1s; }
+.skill-card:nth-of-type(2) { animation-delay: 0.2s; }
+.skill-card:nth-of-type(3) { animation-delay: 0.3s; }
+.skill-card:nth-of-type(4) { animation-delay: 0.4s; }
+
+.certifications-heading-container { animation-delay: 0.5s; }
+.certifications-list-container { animation-delay: 0.6s; }
+
+@keyframes skillsSectionFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
