@@ -1,0 +1,118 @@
+/* src/components/Contact.css */
+.contact-section {
+  padding-bottom: 5rem; /* Extra padding at the bottom of the page */
+}
+
+.contact-intro-text { /* Optional text above the contact methods */
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: #c5c5c5;
+  margin: 0 auto 2.5rem auto; /* Centered with bottom margin */
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+.contact-content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--secondary-bg-color);
+  padding: 2rem 2.5rem;
+  border-radius: 12px; /* Slightly more rounded */
+  box-shadow: 0 7px 28px rgba(0,0,0,0.28); /* Consistent shadow */
+  /* border-top: 5px solid var(--accent-color-purple); */ /* Optional accent */
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column */
+  gap: 1.5rem;
+}
+
+.contact-item-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem 1.25rem; /* Adjusted padding */
+  border-radius: 8px;
+  background-color: rgba(0,0,0,0.15); /* Darker item background */
+  border: 1px solid transparent; /* Transparent border initially */
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease-out, border-color 0.25s ease;
+}
+
+.contact-item-link:hover {
+  background-color: var(--accent-color-blue);
+  color: var(--primary-bg-color);
+  border-color: var(--accent-color-blue);
+  transform: translateY(-4px) scale(1.02); /* Hover effect */
+}
+.contact-item-link:hover .contact-icon svg path { /* Change icon fill on hover */
+    fill: var(--primary-bg-color);
+}
+
+
+.contact-item-link .contact-icon {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.25s ease;
+}
+.contact-item-link:hover .contact-icon {
+    transform: scale(1.1); /* Icon slightly enlarges on hover */
+}
+
+.contact-item-link .contact-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor; /* Ensures SVG inherits color */
+}
+
+/* Animations */
+.contact-intro-text,
+.contact-content-wrapper {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: contactElementFadeIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.contact-content-wrapper { animation-delay: 0.15s; }
+
+/* Stagger items if needed, apply to .contact-item-link */
+/* This requires .contact-item-link to also have the animation base class if not nested */
+.contact-grid .contact-item-link {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: contactElementFadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.contact-grid .contact-item-link:nth-child(1) { animation-delay: 0.25s; }
+.contact-grid .contact-item-link:nth-child(2) { animation-delay: 0.35s; }
+.contact-grid .contact-item-link:nth-child(3) { animation-delay: 0.45s; }
+.contact-grid .contact-item-link:nth-child(4) { animation-delay: 0.55s; }
+
+
+@keyframes contactElementFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* For wider screens, make contact items appear in two columns if there are enough items */
+@media (min-width: 768px) {
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        gap: 1.8rem; /* Adjust gap for two columns */
+    }
+    /* If only 1 or 2 items, they might look odd in 2 columns. This can be handled by JS or by how many items there are. */
+    /* For 3 items, one might be alone on the second row. This is often acceptable. */
+    /* For 4 items, it's a perfect 2x2 grid. */
+}
+@media (max-width: 480px) {
+    .contact-content-wrapper {
+        padding: 1.5rem; /* Less padding on very small screens */
+    }
+    .contact-item-link {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+}
