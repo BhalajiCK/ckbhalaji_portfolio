@@ -1,0 +1,80 @@
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Default cursor will be hidden via JS when custom cursor is active */
+  font-family: sans-serif; /* Default font, can be overridden by Tailwind utilities */
+  background-color: #ffffff; /* Default background, from palette */
+  color: #111827; /* Default text color, dark gray */
+}
+
+/* Custom Cursor Elements */
+.custom-cursor-outer, .custom-cursor-inner {
+  position: fixed;
+  left: 0; /* Positioned by JS */
+  top: 0;  /* Positioned by JS */
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 9999;
+  transform: translate(-50%, -50%); /* Center elements on mouse coordinates */
+}
+
+.custom-cursor-outer {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #2dd4bf; /* Accent Teal */
+  box-shadow: 0 0 10px #2dd4bf, 0 0 15px #2dd4bf; /* Soft glow */
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.custom-cursor-inner {
+  width: 6px;
+  height: 6px;
+  background-color: #2dd4bf; /* Accent Teal */
+  /* Inner dot has a faster, slightly delayed follow for a subtle effect */
+  transition: transform 0.1s cubic-bezier(0.19, 1, 0.22, 1) 0.02s, opacity 0.2s ease-in-out;
+}
+
+/* State when hovering interactive elements (class added by JS) */
+.custom-cursor-hovered .custom-cursor-outer {
+  width: 45px;
+  height: 45px;
+  background-color: rgba(45, 212, 191, 0.1); /* Light teal background */
+  border-color: #f472b6; /* Change to Accent Pink on hover for variety */
+  box-shadow: 0 0 15px #f472b6, 0 0 25px #f472b6;
+}
+
+.custom-cursor-hovered .custom-cursor-inner {
+  background-color: #f472b6; /* Match outer border color on hover */
+  /* transform: translate(-50%, -50%) scale(1.2); /* Optional: slightly scale inner dot too */
+}
+
+/* Ensure body takes full height for scroll behavior testing */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Scrollbar for project card descriptions */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(45, 212, 191, 0.6); /* Accent Teal, semi-transparent */
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(244, 114, 182, 0.8); /* Accent Pink, semi-transparent on hover */
+}
+/* For Firefox (simplified, as Firefox has less scrollbar styling capability) */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(45, 212, 191, 0.6) rgba(255, 255, 255, 0.1);
+}
