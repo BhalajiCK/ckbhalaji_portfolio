@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add global styles here if needed, below the Tailwind directives */
+body {
+  font-family: 'sans-serif'; /* Example: default sans-serif font */
+  /* Smooth scrolling will be handled by CSS/JS later if needed */
+}
